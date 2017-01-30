@@ -1,11 +1,10 @@
-
 add = character(50)
-bridge = matrix(ncol = 6)
+bridge = matrix(ncol = 7)
 colnames(bridge) = c("id","fips", "year","deck","superstr","substr","traffic")
 for (i in 1:50) {
   add[i] = paste("https://www.fhwa.dot.gov/bridge/nbi/",2016,"/",state.abb[i],16,".txt",sep = "")
   
-  con = file(add[i],open= "r")
+  con = file(add[1],open= "r")
   line = readLines(con)
   id = substring(line,4,18)
   fips = paste(substring(line[1],1,2),substring(line,30,32),sep = "")
@@ -19,3 +18,4 @@ for (i in 1:50) {
   bridge=rbind(bridge,data.frame(id,fips, year,deck,superstr,substr,traffic))
 }
   bridge = bridge[-1,]
+  
